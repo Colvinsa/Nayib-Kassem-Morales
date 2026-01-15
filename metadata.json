@@ -1,0 +1,7 @@
+{
+  "name": "Puerto Azul Club House",
+  "description": "A comprehensive residential complex management app with roles for residents, gatekeepers, and administrators. Features include visitor access QR generation, PQR tracking, and security panels.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
