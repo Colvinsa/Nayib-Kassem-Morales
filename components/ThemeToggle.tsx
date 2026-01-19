@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 
-const ThemeToggle: React.FC<{ className?: string }> = ({ className }) => {
+const ThemeToggle: React.FC<{ className?: string }> = ({ className = '' }) => {
     const [isDark, setIsDark] = useState(true);
 
     useEffect(() => {
@@ -34,3 +35,4 @@ const ThemeToggle: React.FC<{ className?: string }> = ({ className }) => {
 };
 
 export default ThemeToggle;
+    

@@ -19,6 +19,7 @@ import AdminNoticesScreen from './screens/AdminNoticesScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import FinancialDashboardScreen from './screens/FinancialDashboardScreen';
 import AdminFinancialsScreen from './screens/AdminFinancialsScreen';
+import ResourceManagementScreen from './screens/ResourceManagementScreen';
 import DevMenu from './components/DevMenu';
 
 const ScrollToTop = () => {
@@ -48,6 +49,7 @@ const App: React.FC = () => {
               <Route path="/admin/panel" element={<AdminPanelScreen />} />
               <Route path="/admin/notices" element={<AdminNoticesScreen />} />
               <Route path="/admin/financials" element={<AdminFinancialsScreen />} />
+              <Route path="/admin/resources" element={<ResourceManagementScreen />} />
               <Route path="/login" element={<LoginScreen />} />
               <Route path="/admin/payments" element={<AdminPaymentsScreen />} />
               <Route path="/payments" element={<PaymentsScreen />} />

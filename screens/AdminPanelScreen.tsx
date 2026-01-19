@@ -56,6 +56,13 @@ const AdminPanelScreen: React.FC = () => {
                         <span className="font-bold text-slate-900 dark:text-white text-sm">Cartera</span>
                     </button>
 
+                    <button onClick={() => navigate('/admin/resources')} className="bg-white dark:bg-surface-dark p-4 rounded-2xl border border-gray-200 dark:border-white/5 flex flex-col items-center justify-center gap-3 hover:shadow-lg transition-all active:scale-95 group">
+                        <div className="size-12 rounded-full bg-cyan-100 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <span className="material-symbols-outlined">energy_savings_leaf</span>
+                        </div>
+                        <span className="font-bold text-slate-900 dark:text-white text-sm">Recursos</span>
+                    </button>
+
                     <button onClick={() => navigate('/gatekeeper')} className="bg-white dark:bg-surface-dark p-4 rounded-2xl border border-gray-200 dark:border-white/5 flex flex-col items-center justify-center gap-3 hover:shadow-lg transition-all active:scale-95 group">
                         <div className="size-12 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
                             <span className="material-symbols-outlined">contact_page</span>

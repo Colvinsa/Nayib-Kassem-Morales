@@ -1,8 +1,9 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ThemeToggle from '../components/ThemeToggle';
-// Importamos jsQR para decodificar el código de la cámara
-import jsQR from 'https://esm.sh/jsqr@1.4.0';
+// Importamos jsQR desde el importmap
+import jsQR from 'jsqr';
 
 interface VisitorPass {
     id: string;
@@ -185,7 +186,8 @@ const GenerateQRScreen: React.FC = () => {
                     #carnet-print, #carnet-print * { visibility: visible; }
                     #carnet-print {
                         position: fixed;
-                        left: 0; top: 0;
+                        left: 50%; top: 50%;
+                        transform: translate(-50%, -50%);
                         width: 85.6mm;
                         height: 53.98mm;
                         padding: 5mm;
@@ -196,6 +198,7 @@ const GenerateQRScreen: React.FC = () => {
                         border: 1px solid #ddd;
                         border-radius: 2mm;
                         align-items: center;
+                        z-index: 9999;
                     }
                     .no-print { display: none !important; }
                 }
@@ -336,14 +339,15 @@ const GenerateQRScreen: React.FC = () => {
             </main>
 
             {showQRModal && activePass && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 no-print text-center">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 text-center">
                     <div className="absolute inset-0 bg-black/90 backdrop-blur-md" onClick={() => setShowQRModal(false)}></div>
-                    <div className="relative w-full max-w-sm bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 rounded-[2.5rem] p-8 flex flex-col items-center animate-zoom-in">
+                    {/* Se añade ID para impresión y se quita 'no-print' de la jerarquía directa que bloquea la visualización */}
+                    <div className="relative w-full max-w-sm bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/10 rounded-[2.5rem] p-8 flex flex-col items-center animate-zoom-in" id="carnet-print">
                         <div className="bg-white p-4 rounded-3xl mb-6 shadow-2xl border border-gray-100"><img src={generateQRUrl(activePass)} className="size-48" alt="QR" /></div>
                         <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{activePass.firstName} {activePass.lastName}</h3>
                         <p className="text-primary font-black tracking-widest text-sm mb-6 uppercase">BLOQUE {activePass.block} • APTO {activePass.unit}</p>
-                        <button onClick={() => window.print()} className="w-full bg-primary text-black font-bold py-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20"><span className="material-symbols-outlined">print</span> Imprimir</button>
-                        <button onClick={() => setShowQRModal(false)} className="w-full py-4 text-gray-400 text-sm font-bold">Cerrar</button>
+                        <button onClick={() => window.print()} className="w-full bg-primary text-black font-bold py-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 no-print"><span className="material-symbols-outlined">print</span> Imprimir</button>
+                        <button onClick={() => setShowQRModal(false)} className="w-full py-4 text-gray-400 text-sm font-bold no-print">Cerrar</button>
                     </div>
                 </div>
             )}
@@ -352,3 +356,4 @@ const GenerateQRScreen: React.FC = () => {
 };
 
 export default GenerateQRScreen;
+    
